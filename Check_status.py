@@ -5,6 +5,7 @@ import requests
 import argparse
 
 def certificate_details(host):
+    context = ssl.create_default_context()
     connection = context.wrap_socket(socket.socket(socket.AF_INET), server_hostname = host)
     connection.connect((host, 443))
     certificate_details = connection.getpeercert()
@@ -18,14 +19,12 @@ def get_expiry_date(host):
 
     return expiry_date
 
-
-context = ssl.create_default_context()
-
-parser = argparse.ArgumentParser()
-parser.add_argument("host")
-arg = parser.parse_args()
-
-expiry_date = get_expiry_date(arg.host)
-remaining_days_to_expire = (expiry_date - datetime.datetime.now()).days
-
-return remaining_days_to_expire
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("host")
+    arg = parser.parse_args()
+    
+    expiry_date = get_expiry_date(arg.host)
+    remaining_days_to_expire = (expiry_date - datetime.datetime.now()).days
+    
+    return remaining_days_to_expire
