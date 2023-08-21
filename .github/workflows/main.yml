@@ -25,11 +25,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Read domain list
-        run: DOMAINS=$(cat hostnames.txt)
-        id: read_domain_list
-
-
       - name: Loop over domains and send alerts
         id: loop_domains
         run: |
