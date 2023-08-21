@@ -33,6 +33,6 @@ jobs:
       - name: Loop over domains and send alerts
         id: loop_domains
         run: |
-            expiry_days=$(python check_status.py google.com)  # Replace with your SSL check script
+            expiry_days=$(python ./check_status.py google.com)  # Replace with your SSL check script
             message="*Domain : $domain \n* Warning : The SSL certificate for $domain will expire in $expiry_days days."
             curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$message\"}" ${{ secrets.SLACK_WEBHOOK }}  # Replace with your secret name
