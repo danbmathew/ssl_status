@@ -22,4 +22,4 @@ jobs:
           pip install requests
 
       - name: Run SSL Expiry Check
-        run: python https://github.com/danbmathew/ssl_status/blob/master/Check_status.py
+        run: python ./Check_status.py
