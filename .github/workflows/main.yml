@@ -27,7 +27,7 @@ jobs:
 
       - name: Read domain list
         run: echo "DOMAINS=$(cat path/to/domain_list.txt)" >> $GITHUB_ENV
-        id: read_domain_list and sets it into an environment variable
+        id: read_domain_list
 
 
       - name: Loop over domains and send alerts
