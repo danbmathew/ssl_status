@@ -26,14 +26,14 @@ jobs:
           pip install requests
 
       - name: Read domain list
-        run: echo "DOMAINS=$(cat hostnames.txt)" >> $GITHUB_ENV
+        run: DOMAINS=$(cat hostnames.txt)
         id: read_domain_list
 
 
       - name: Loop over domains and send alerts
         id: loop_domains
         run: |
-         for domain in $DOMAINS
+         for domain in ${{ DOMAINS }}
          do
            expiry_days=$(python check_status.py "$domain")  # Replace with your SSL check script
            message="*Domain : $domain \n* Warning : The SSL certificate for $domain will expire in $expiry_days days."
