@@ -27,3 +27,5 @@ arg = parser.parse_args()
 
 expiry_date = get_expiry_date(arg.host)
 remaining_days_to_expire = (expiry_date - datetime.datetime.now()).days
+
+return remaining_days_to_expire
