@@ -18,7 +18,6 @@ def certificate_details(host):
 def get_expiry_date(host):
     ssl_details = certificate_details(host)
     expiry_date = datetime.datetime.strptime(ssl_details['notAfter'], '%b %d %H:%M:%S %Y %Z')
-    print(expiry_date)
     return expiry_date
 
 def main():
@@ -27,7 +26,6 @@ def main():
     arg = parser.parse_args()
     expiry_date = get_expiry_date(arg.host)
     remaining_days_to_expire = (expiry_date - datetime.datetime.now()).days
-    print(remaining_days_to_expire)
     return remaining_days_to_expire
 
 if __name__ == "__main__": 
