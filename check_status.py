@@ -1,4 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-return 5
+def main():
+  return 5
+main()
