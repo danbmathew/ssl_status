@@ -26,8 +26,7 @@ jobs:
           pip install requests
 
       - name: Read domain list
-        run: |
-          echo "DOMAINS=$(cat hostnames.txt)" >> $GITHUB_ENV
+        run: DOMAINS=$(cat hostnames.txt)
         id: read_domain_list
 
 
