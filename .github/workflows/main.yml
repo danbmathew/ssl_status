@@ -26,10 +26,7 @@ jobs:
           pip install requests
 
       - name: Read domain list
-        run: |
-          DOMAINS=$(cat hostnames.txt)
-          echo "DOMAINS"
-          echo "$DOMAINS"
+        run: DOMAINS=$(cat hostnames.txt)
         id: read_domain_list
 
 
@@ -38,7 +35,8 @@ jobs:
         run: |
           for domain in $DOMAINS
           do
-            echo "Processing domain: $domain"
+            echo "$domain"
+            echo "$DOMAINS"
             expiry_days=$(python Check_status.py "$domain")  # Replace with your SSL check script
             message="*Domain : $domain \n * Warning : The SSL certificate for $domain will expire in $expiry_days days."
             echo "$message"
