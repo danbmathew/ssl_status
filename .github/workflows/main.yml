@@ -33,7 +33,7 @@ jobs:
       - name: Loop over domains and send alerts
         id: loop_domains
         run: |
-          for domain in $"DOMAINS"
+          for domain in "$DOMAINS"
           do
             echo "$domain"
             expiry_days=$(python check_status.py "$domain")  # Replace with your SSL check script
