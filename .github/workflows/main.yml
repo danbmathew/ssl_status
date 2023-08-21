@@ -26,7 +26,10 @@ jobs:
           pip install requests
 
       - name: Read domain list
-        run: DOMAINS=$(cat hostnames.txt)
+        run: |
+          DOMAINS=$(cat hostnames.txt)
+          echo "DOMAINS"
+          echo "$DOMAINS"
         id: read_domain_list
 
 
