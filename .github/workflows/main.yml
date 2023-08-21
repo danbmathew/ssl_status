@@ -25,7 +25,7 @@ jobs:
           pip install requests
 
       - name: Read domain list
-        run: hostnames.txt  # Replace with your domain list file path
+        run: cat hostnames.txt  # Replace with your domain list file path
         id: read_domain_list
 
 
