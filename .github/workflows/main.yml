@@ -2,8 +2,8 @@ name: Ssl status check
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Scheduled to run at 00:00 AM everyday.
-  workflow_dispatch:  # Enabled to manually trigger the alert.
+    #- cron: '0 0 * * *'  # Scheduled to run at 00:00 AM everyday.
+  #workflow_dispatch:  # Enabled to manually trigger the alert.
 
 
 jobs:
