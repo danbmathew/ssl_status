@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
+        run: sudo apt-get install -y sshpass
 
       - name: Authenticate into server
-        run: sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntuadmin@127.0.0.1
+        run: sshpass -e ${{ secrets.SSH_PASSWORD }} ssh ubuntuadmin@127.0.0.1
