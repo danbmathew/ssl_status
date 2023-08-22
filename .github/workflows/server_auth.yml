@@ -16,4 +16,4 @@ jobs:
 
       - name: Authenticate into server
         run: |
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh user@server_ip 'echo 'In the server, through github actions''
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntuadmin@127.0.0.1 'echo 'In the server, through github actions''
