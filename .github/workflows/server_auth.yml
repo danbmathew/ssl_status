@@ -19,4 +19,4 @@ jobs:
 
       - name: Run remote command
         run: |
-          ssh 127.0.0.1:22 "echo 'Hello from GitHub Actions!'"
+          ssh 127.0.0.1 "echo 'Hello from GitHub Actions!'"
