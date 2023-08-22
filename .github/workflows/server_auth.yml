@@ -15,4 +15,7 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: Authenticate into server
-        run: sshpass -e ${{ secrets.SSH_PASSWORD }} ssh ubuntuadmin@127.0.0.1
+        run: |
+          export SSHPASS=${{ secrets.SSH_PASSWORD }}
+          sshpass -e ssh ubuntuadmin@127.0.0.1
+          
