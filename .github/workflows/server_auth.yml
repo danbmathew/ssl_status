@@ -1,22 +1,19 @@
-name: SSH into EC2 Instance
+name: Deploy to Server
 
 on:
   push:
 
 jobs:
-  ssh:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH key
-        run: echo "${{ secrets.EC2_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Add EC2 instance host key to known hosts
-        run: ssh-keyscan -H 18.207.165.52 >> ~/.ssh/known_hosts
-
-      - name: SSH into EC2 Instance
+      - name: Authenticate into server
         run: |
-          ssh -o StrictHostKeyChecking=yes -T -i ~/.ssh/id_rsa ubuntu@18.207.165.52> 'echo "Hello from GitHub Actions!"'
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh user@server_ip 'echo 'In the server, through github actions''
