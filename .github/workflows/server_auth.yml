@@ -15,5 +15,5 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: Authenticate into server
-        run: ssh ubuntuadmin@127.0.0.1
+        run: sshpass -p 'password' ssh ubuntuadmin@127.0.0.1
           
