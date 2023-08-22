@@ -16,8 +16,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 3.81.130.76 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 0 >> ~/.ssh/known_hosts
 
       - name: SSH auth into EC2 instance and running commands
         run: |
-          ssh -i ~/.ssh/id_rsa ubuntu@3.81.130.76 'mkdir test'
+          ssh -i ~/.ssh/id_rsa ubuntu@0 'mkdir test'
