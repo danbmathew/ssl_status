@@ -18,6 +18,6 @@ jobs:
 
       - name: Run command on local machine
         run: |
-          ssh -o StrictHostKeyChecking=no -vT apache@127.0.0.1 "echo 'Hello from GitHub Actions!'"
+          ssh -o StrictHostKeyChecking=no -vT ubuntuadmin@127.0.0.1 "echo 'Hello from GitHub Actions!'"
 
 
