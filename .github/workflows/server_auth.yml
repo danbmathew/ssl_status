@@ -1,6 +1,7 @@
 name: Local SSH Connection
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -15,12 +16,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add local public key to authorized_keys
-        run: |
-          mkdir -p ~/.ssh
-          cat $HOME/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-
       - name: Run command on local machine
         run: |
-          ssh 127.0.0.1 "echo 'Hello from GitHub Actions!'"
+          ssh -o StrictHostKeyChecking=no 127.0.0.1 "echo 'Hello from GitHub Actions!'"
+
 
