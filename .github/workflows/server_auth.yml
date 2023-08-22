@@ -20,4 +20,4 @@ jobs:
 
       - name: SSH into EC2 and Run Commands
         run: |
-          ssh -i ~/.ssh/id_rsa ubuntu@3.81.130.76 'echo Hello from GitHub Actions'
+          ssh -i ~/.ssh/id_rsa ubuntu@3.81.130.76 'mkdir test'
