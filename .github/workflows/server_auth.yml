@@ -1,23 +1,22 @@
-name: Local SSH Connection
+name: SSH into EC2 Instance
 
 on:
   push:
-  workflow_dispatch:
 
 jobs:
-  local_ssh:
+  ssh:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH agent
-        uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up SSH key
+        run: echo "${{ secrets.EC2_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
-      - name: Run command on local machine
+      - name: Add EC2 instance host key to known hosts
+        run: ssh-keyscan -H 18.207.165.52 >> ~/.ssh/known_hosts
+
+      - name: SSH into EC2 Instance
         run: |
-          ssh -o StrictHostKeyChecking=no -vT ubuntuadmin@127.0.0.1
-
-
+          ssh -o StrictHostKeyChecking=yes -T -i ~/.ssh/id_rsa ubuntu@18.207.165.52> 'echo "Hello from GitHub Actions!"'
