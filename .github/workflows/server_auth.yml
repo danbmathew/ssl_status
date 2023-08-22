@@ -15,5 +15,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
       - name: Authenticate into server
-        run: |
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntuadmin@127.0.0.1 echo 'In the server, through github actions'
+        run: sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ubuntuadmin@127.0.0.1
