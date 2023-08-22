@@ -15,8 +15,8 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.0
         with:
-          ssh-private-key: ${{ secrets.SSH Key }}
+          ssh-private-key: ${{ secrets.SSH_KEY }}
 
       - name: Run remote command
         run: |
-          ssh user@server-ip "echo 'Hello from GitHub Actions!'"
+          ssh 127.0.0.1:22 "echo 'Hello from GitHub Actions!'"
