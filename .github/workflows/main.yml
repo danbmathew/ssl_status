@@ -1,14 +1,14 @@
-name: SSL Expiry Check
+name: Ssl status check
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Run every day at midnight UTC
-  workflow_dispatch:  # Allow manual triggering
-  push:
+    - cron: '0 0 * * *'  # Scheduled to run at 00:00 AM everyday.
+  workflow_dispatch:  # Enabled to manually trigger the alert.
+
 
 jobs:
   ssl_expiry_check:
-    name: SSL Expiry Check
+    name: Ssl status check
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         run: |
          for domain in $(cat hostnames.txt)
          do
-           expiry_days=$(python check_status.py "$domain")  # Replace with your SSL check script
+           expiry_days=$(python check_status.py "$domain") 
            message="*Domain : $domain \n* Warning : The SSL certificate for $domain will expire in $expiry_days days."
            curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$message\"}" ${{ secrets.SLACK_WEBHOOK }}
          done
