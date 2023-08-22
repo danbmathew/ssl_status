@@ -17,5 +17,5 @@ jobs:
       - name: Authenticate into server
         run: |
           export SSHPASS=${{ secrets.SSH_PASSWORD }}
-          sshpass -e ssh ubuntuadmin@127.0.0.1
+          sshpass -e ssh -tt ubuntuadmin@127.0.0.1
           
