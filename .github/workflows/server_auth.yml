@@ -17,6 +17,7 @@ jobs:
 
       - name: Add local public key to authorized_keys
         run: |
+          mkdir -p ~/.ssh
           cat $HOME/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
       - name: Run command on local machine
