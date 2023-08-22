@@ -1,4 +1,4 @@
-name: Deploy to Server
+name: SSH Deploy
 
 on:
   push:
@@ -8,12 +8,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 3.81.130.76 >> ~/.ssh/known_hosts
 
-      - name: Authenticate into server
-        run: sshpass -p 'Slam.b@ll9989' ssh -tt ubuntuadmin@127.0.0.1
-          
+      - name: SSH into EC2 and Run Commands
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntur@3.81.130.76 'echo Hello from GitHub Actions'
